@@ -1,0 +1,7 @@
+# Code Editor directories and files
+.idea
+.env
+.idea/*
+node_modules
+dist
+.DS_Store

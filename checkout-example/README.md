@@ -33,6 +33,13 @@ DEFAULT_CURRENCY=EUR
 
 6. Replace `{clientID}`, `{projectKey}`, `{authUrl}`, `{hostUrl}` and `{clientSecret}` with the respective values from your API Client. The `DEFAULT_CURRENCY` can be changed based on your Composable Commerce Project settings.
 
+## start the servers
+Use docker compose to start the servers
+
+```sh
+docker-compose up
+```
+
 ## Using the ME Endpoint Checkout App
 
 You should start the server before the client and keep both running in separate Terminal windows.

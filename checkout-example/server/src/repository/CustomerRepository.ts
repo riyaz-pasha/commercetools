@@ -1,5 +1,5 @@
+import { ApiRoot, MyCustomerDraft } from '@commercetools/platform-sdk'
 import Client from '../client/Client'
-import { ApiRoot } from '@commercetools/platform-sdk'
 
 type CustomerData = {
   email: string
@@ -41,14 +41,13 @@ class CustomerRepository implements ICustomerRepository {
     this.projectKey = rootClient.getProjectKey()
   }
 
-  createCustomerDraft(customerData) {
+  createCustomerDraft(customerData): MyCustomerDraft {
     const { email, password, firstName, lastName, countryCode, key } =
       customerData
     const country = process.env.DEFAULT_COUNTRY || countryCode || 'US'
     return {
       email,
       password,
-      key,
       firstName,
       lastName,
       addresses: [
@@ -57,14 +56,15 @@ class CustomerRepository implements ICustomerRepository {
         },
       ],
       defaultShippingAddress: 0,
-    }
+    } satisfies MyCustomerDraft
   }
 
   async createCustomer(customerData) {
     try {
       const customer = await this.apiRoot
         .withProjectKey({ projectKey: this.projectKey })
-        .customers()
+        .me()
+        .signup()
         .post({
           body: this.createCustomerDraft(customerData),
         })

@@ -38,7 +38,7 @@ const Login = ({ getUser, getActiveCart, cart }) => {
   }
 
   useEffect(() => {
-    // getActiveCart()
+    getActiveCart()
   }, [])
 
   return (
@@ -56,6 +56,9 @@ const Login = ({ getUser, getActiveCart, cart }) => {
 
         <Button variant="primary" type="submit">
           Submit
+        </Button>
+        <Button variant="link" onClick={() => navigate('/signup')}>
+          Don't have an account? Sign Up
         </Button>
       </Form>
     </div>

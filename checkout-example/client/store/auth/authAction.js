@@ -1,6 +1,10 @@
 import axios from 'axios'
 import { TokenStorage } from '../../src/utils'
 
+export const SIGNUP_USER_START = 'SIGNUP_USER_START'
+export const SIGNUP_USER_SUCCESS = 'SIGNUP_USER_SUCCESS'
+export const SIGNUP_USER_ERROR = 'SIGNUP_USER_ERROR'
+
 export const GET_USER_START = 'GET_USER_START'
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS'
 export const GET_USER_ERROR = 'GET_USER_ERROR'
@@ -10,6 +14,22 @@ export const LOGOUT_USER_SUCCESS = 'LOGOUT_USER_SUCCESS'
 export const LOGOUT_USER_ERROR = 'LOGOUT_USER_ERROR'
 
 const tokenStorage = new TokenStorage(localStorage)
+
+export const signupUserStart = () => ({
+  type: SIGNUP_USER_START,
+})
+
+export const signupUserSuccess = (user) => ({
+  type: SIGNUP_USER_SUCCESS,
+  payload: { user },
+})
+
+export const signupUserError = (error) => {
+  return ({
+    type: SIGNUP_USER_ERROR,
+    payload: { error },
+  })
+}
 
 export const getUserStart = () => ({
   type: GET_USER_START,
@@ -38,6 +58,45 @@ export const logoutUserError = (error) => ({
   type: LOGOUT_USER_ERROR,
   payload: { error },
 })
+
+export function signupUser({ firstName, lastName, email, password }) {
+  return (dispatch) => {
+    dispatch(signupUserStart())
+    return axios({
+      url: 'http://localhost:8085/register',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        token: tokenStorage.getItem('token'),
+      },
+      data: {
+        email,
+        password,
+        firstName,
+        lastName,
+      },
+    })
+      .then((response) => {
+        if (response.status == 201) {
+          const { firstName, lastName } = response.data.data.customer
+          tokenStorage.removeItem('token')
+          tokenStorage.setItem('name', `${firstName} ${lastName}`)
+          return dispatch(signupUserSuccess(response.data.data))
+        }
+        else if (response.status == 400) {
+          return dispatch(signupUserError(new Error(response.data.message)))
+        } else {
+          return dispatch(signupUserError(response.data))
+        }
+      })
+      .catch((error) => {
+        if (error.response.status == 400) {
+          return dispatch(signupUserError(new Error(error.response.data.message)))
+        }
+        return dispatch(signupUserError(error))
+      })
+  }
+}
 
 export function getUser({ email, password }) {
   return (dispatch) => {

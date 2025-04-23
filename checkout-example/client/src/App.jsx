@@ -10,7 +10,9 @@ import Details from './component/Details.jsx'
 import Cart from './component/Cart.jsx'
 import store from '../store'
 import Login from './component/Login.jsx'
+import Signup from "./component/Signup.jsx";
 import Merge from './component/Merge.jsx'
+import SuccessPage from './component/SuccessPage.jsx';
 import './App.css'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -25,7 +27,9 @@ function App() {
                 <Route path="/details" element={<Details />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
                 <Route path="/Merge" element={<Merge />} />
+                <Route path="/thank-you" element={<SuccessPage />} />
             </Routes>
         </Provider>
     )

@@ -8,6 +8,26 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
+    case authAction.SIGNUP_USER_START: {
+      return {
+        ...state,
+        loading: true,
+      }
+    }
+    case authAction.SIGNUP_USER_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        user: action.payload.user,
+      }
+    }
+    case authAction.SIGNUP_USER_ERROR: {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      }
+    }
     case authAction.GET_USER_START: {
       return {
         ...state,

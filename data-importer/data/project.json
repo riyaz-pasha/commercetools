@@ -1,0 +1,18 @@
+{
+  "currencies": [
+    "AUD",
+    "EUR",
+    "USD"
+  ],
+  "countries": [
+    "AU",
+    "DE",
+    "AT",
+    "US",
+    "NL"
+  ],
+  "languages": [
+    "EN",
+    "DE"
+  ]
+}

@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Europe",
+    "description": "",
+    "locations": [
+      { "country": "AT"},
+      { "country": "DE"},
+      { "country": "NL"}
+    ]
+  },
+  {
+    "name": "United States",
+    "description": "",
+    "locations": [
+      { "country": "US"}
+    ]
+  },
+  {
+    "name": "Australia",
+    "description": "",
+    "locations": [
+      { "country": "AU" }
+    ]
+  }
+]

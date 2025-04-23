@@ -29,7 +29,7 @@ const Product = ({ product, handler }) => {
               </Button>
             </Col>
             <Col>
-              <small className="text-muted text-right">{CURRENCY_CODE[currencyCode] + Number.parseFloat(centAmount / 100).toFixed(2).toString().replace('.', ',')}</small>
+              <small className="text-muted text-right">{CURRENCY_CODE[currencyCode] + Number.parseFloat(centAmount / 100).toFixed(2).toString()}</small>
             </Col>
           </Row>
         </Card.Footer>

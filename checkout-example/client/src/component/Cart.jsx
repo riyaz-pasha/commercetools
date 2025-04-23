@@ -82,7 +82,7 @@ const Cart = ({ removeLineItem, getActiveCart, cart }) => {
               </div>
               <div className="col-10 max-auto col-lg-2">
                 {
-                  CURRENCY_CODE[item.totalPrice.currencyCode] + Number.parseFloat(item.price.value.centAmount / 100).toFixed(2).toString().replace('.', ',')
+                  CURRENCY_CODE[item.totalPrice.currencyCode] + Number.parseFloat(item.price.value.centAmount / 100).toFixed(2).toString()
                 }
               </div>
               <div className="col-10 max-auto col-lg-2">
@@ -92,7 +92,7 @@ const Cart = ({ removeLineItem, getActiveCart, cart }) => {
               </div>
               <div className="col-10 max-auto col-lg-2">
                 {
-                  CURRENCY_CODE[item.totalPrice.currencyCode] + Number.parseFloat(item.totalPrice.centAmount / 100).toFixed(2).toString().replace('.', ',')
+                  CURRENCY_CODE[item.totalPrice.currencyCode] + Number.parseFloat(item.totalPrice.centAmount / 100).toFixed(2).toString()
                 }
               </div>
               <div className="col-10 max-auto col-lg-2">

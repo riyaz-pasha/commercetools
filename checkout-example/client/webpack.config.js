@@ -20,6 +20,8 @@ const generalConfig = {
     port: 3002,
     hot: true,
     historyApiFallback: true,
+    host: '0.0.0.0',             // ← Allows access from all interfaces
+    allowedHosts: 'all',         // ← Crucial for bypassing the invalid Host header
     static: {
       directory: __dirname,
     },

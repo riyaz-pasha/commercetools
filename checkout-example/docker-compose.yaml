@@ -14,6 +14,7 @@ services:
       - REACT_APP_BASE_URL=http://localhost:8085
     ports:
       - 3002:3002
+      - 44371:44371
   
   server:
     image: node:20

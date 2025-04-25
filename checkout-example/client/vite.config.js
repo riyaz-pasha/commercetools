@@ -1,10 +1,20 @@
 import react from '@vitejs/plugin-react';
+import { createSNICallback } from 'anchor-pki/auto-cert/sni-callback';
+import { TermsOfServiceAcceptor } from 'anchor-pki/auto-cert/terms-of-service-acceptor';
 import dotenv from 'dotenv';
 import { defineConfig } from 'vite';
 // import polyfillNode from 'rollup-plugin-polyfill-node';
 
 // Load environment variables from `.env` file
 dotenv.config();
+// console.log(process.env)
+
+
+const SNICallback = createSNICallback({
+    name: 'sni-callback',
+    tosAcceptors: TermsOfServiceAcceptor.createAny(),
+    cacheDir: 'tmp/acme'
+});
 
 // Vite config
 export default defineConfig({
@@ -13,11 +23,14 @@ export default defineConfig({
         // polyfillNode(),  // Add Node polyfills
     ],
     server: {
-        open: true,
+        // https: {
+        //     SNICallback
+        // },
+        // port: process.env.HTTPS_PORT,
         port: 3002,
-        hot: true,
         host: '0.0.0.0',
-        proxy: {},  // You can add proxy configurations here if needed
+        // open: true,
+        // proxy: {},  // You can add proxy configurations here if needed
     },
     // build: {
     //     outDir: 'dist',
@@ -41,10 +54,10 @@ export default defineConfig({
         // Fallback for Node modules
         dedupe: ['react', 'react-dom'],
     },
-    define: {
-        'process.env': process.env,
-    },
-    optimizeDeps: {
-        // Add any dependencies that need to be pre-bundled
-    },
+    // define: {
+    //     // 'process.env': process.env,
+    // },
+    // optimizeDeps: {
+    //     // Add any dependencies that need to be pre-bundled
+    // },
 });

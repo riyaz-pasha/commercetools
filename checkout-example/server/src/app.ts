@@ -12,7 +12,7 @@ const app = express()
 const { NODE_ENV } = process.env
 
 // Application-Level Middleware
-app.use(cors({ origin: 'http://localhost:3002' }));
+app.use(cors({ origin: '*' }));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
